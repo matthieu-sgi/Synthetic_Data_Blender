@@ -53,7 +53,6 @@ def copy_obj(object_name : string) -> None:
     bpy.context.collection.objects.link(obj)
     
 def collide(x : float, y: float) -> bool :
-    
     for obj in bpy.data.objects:
         x_obj, y_obj , *_ = obj.location
         if x_obj + ball_offset >= x and x_obj - ball_offset <= x :
@@ -62,12 +61,12 @@ def collide(x : float, y: float) -> bool :
             return True
         
     return False
-    
+
 def generate_random_pos() -> tuple :
     return (ru(x_min + ball_offset,x_max - ball_offset),
             ru(y_min + ball_offset ,y_max - ball_offset),
             z_pos)
-            
+
 def moove_objects() -> None :
     for obj in bpy.data.objects :
         if obj.name in ['Camera','Light', "Plane",'pool_table']:
