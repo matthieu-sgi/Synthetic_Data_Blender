@@ -88,7 +88,11 @@ import csv # to save the csv file
  
 
 
-### Camera
+### Variables
+
+The first step is to define the variables. The variables are the parameters of the dataset. The variables are the following :
+
+- `n_images` : the number of images that you want to generate
 
 
 
