@@ -92,9 +92,55 @@ import csv # to save the csv file
 
 The first step is to define the variables. The variables are the parameters of the dataset. The variables are the following :
 
-- `n_images` : the number of images that you want to generate
+- `master_path` : path to save the dataset
+- `root_object` : objects that mustn't be suppressed
+- `width` and `height` : dimensions of the pool in real life and in the modelisation
+- `ball_offset` : half of the size of the ball (used to compute the colliding)
+- `column_names` : name of the column in the output file (.csv)
+
+### Methods
+
+General methods for a dataset generation are the following :
+
+- `create_csv` : create the csv file and write the header
+- `write_in_csv` : write the data in the csv file
+- `copy_object` : copy root object and link it to the collection
+- `delete_objects` : delete all the objects except the root object
+- `collide` : check if the ball collide with another ball
+- `generate_random_pos` : generate a random position and return it
+- `moove_object` : move all the objects to the position randomly generated
+- `moove_light` : move the light to the position randomly generated
+- `generate_light` : generate a random number of light and place them randomly
+- `render_and_export` : render the scene and save the image + save coordinates of the balls in the csv file
+- `choose_device` : choose the device to render the scene (CPU or GPU)
+- `step` : main function that call all the other functions
+
+Specific methods for this dataset are the following :
+- `generate_ball` : generate random number of balls and place them randomly
 
 
+### Usage
+
+The usage is the following :
+
+```python
+if __name__ == "__main__":
+    # create the csv file
+    create_csv()
+    # for loop corresponding to the number of images that you want to generate
+    for i in range(number_of_image):
+        step(i)
+```
+
+
+
+# Output
+
+The output is a dataset composed of 2 parts :
+- Images
+- A file (.csv) : the file contains the position of the balls in the images and the color
+
+An example can be found [here](https://github.com/matthieu-sgi/Synthetic_Data_Blender/tree/main/examples/w_hdr).
 
 
 

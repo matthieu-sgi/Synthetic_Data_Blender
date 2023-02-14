@@ -5,7 +5,7 @@ import csv
 import mathutils
 import os
 
-root_objects = ["Camera","Light","pool_table", "red_ball","Plane","yellow_ball"] #objects that musn't be supressed
+root_objects = ["Camera","Light","pool_table", "red_ball","Plane","yellow_ball"] #objects that mustn't be suppressed
 
 #DONT FORGET TO PUT THE LAST BACKSLASH IN THE PATHS
 master_path = "/mnt/data/Documents/A4/pool_temp"
@@ -20,17 +20,19 @@ z_pos = 0.120
 #ball offset to avoid collisions
 ball_offset = 0.059/2
 
+# Column names
+column_names = ["id","x","y","z",'color']
+
 #To initialize csv
 def create_csv(
     path : str = master_path,
     filename : str = 'coords.csv'
     ) -> None :
     #Column names
-    row_list = ["id","x","y","z",'color']
     fullpath = path + filename
     with open(fullpath, 'w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(row_list)
+        writer.writerow(column_names)
 
 def write_in_csv(
     id : int,
