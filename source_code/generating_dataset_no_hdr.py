@@ -4,7 +4,6 @@ import bpy
 import csv
 import mathutils
 import os
-import string
 
 root_objects = ["Camera","Light","pool_table", "red_ball","Plane","yellow_ball"] #objects that musn't be supressed
 
@@ -23,8 +22,8 @@ ball_offset = 0.059/2
 
 #To initialize csv
 def create_csv(
-    path : string = master_path,
-    filename : string = 'coords.csv'
+    path : str = master_path,
+    filename : str = 'coords.csv'
     ) -> None :
     #Column names
     row_list = ["id","x","y","z",'color']
@@ -37,8 +36,8 @@ def write_in_csv(
     id : int,
     coords : tuple,
     color : str,
-    path : string = master_path,
-    filename : string = 'coords.csv'
+    path : str = master_path,
+    filename : str = 'coords.csv'
     ) -> None :
     fullpath = path+filename
     row = [id, *coords,color]
@@ -48,7 +47,7 @@ def write_in_csv(
     
 
 
-def copy_obj(object_name : string) -> None:
+def copy_obj(object_name : str) -> None:
     obj = bpy.data.objects[object_name].copy()
     bpy.context.collection.objects.link(obj)
     
@@ -84,7 +83,7 @@ def delete_objects() -> None :
             
 
 
-def hide_show(name : string, hide : bool) :
+def hide_show(name : str, hide : bool) :
     obj = bpy.data.objects[name]
     obj.hide_viewport = hide
     obj.hide_render = hide
@@ -108,8 +107,8 @@ def generate_balls(nb_red : int = 7, nb_yellow : int = 7) -> None:
     
 def render_and_export(
     id : int ,
-    path : string = master_path+ "images",
-    engine : string = 'CYCLES'
+    path : str = master_path+ "images",
+    engine : str = 'CYCLES'
     #use_GPU : bool = False
     ) -> None :
     bpy.context.scene.render.engine = engine
@@ -133,7 +132,7 @@ def render_and_export(
     
 
 
-def choose_device(soft : string = "CUDA", device : string = "GPU") -> None:
+def choose_device(soft : str = "CUDA", device : str = "GPU") -> None:
     bpy.context.preferences.addons[
     "cycles"
     ].preferences.compute_device_type = soft # or "OPENCL"
