@@ -51,7 +51,7 @@ Here is the layout that I use :
 
 ![layout](media/layout.png)
 
-## Render engine
+### Render engine
 
 Blender has 3 render engines :
 - Cycles
