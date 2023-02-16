@@ -51,6 +51,21 @@ Here is the layout that I use :
 
 ![layout](media/layout.png)
 
+## Render engine
+
+Blender has 3 render engines :
+- Cycles
+- Eevee
+- Workbench
+
+The Cycles render engine is the most powerful. It is based on ray tracing. It is the render engine that we will use to generate the dataset. The shadow and the reflection are very realistic. The render is slower than the Eevee render engine.
+
+The Eevee render engine is a real-time render engine. It is based on ray tracing too.
+
+The Workbench render engine is a simple render engine. It is used to render quickly.
+
+
+
 ## Python
 
 First of all, I higly recommend to read the documentation of Blender. You can find it [here](https://docs.blender.org/api/current/). 
@@ -111,12 +126,15 @@ General methods for a dataset generation are the following :
 - `moove_object` : move all the objects to the position randomly generated
 - `moove_light` : move the light to the position randomly generated
 - `generate_light` : generate a random number of light and place them randomly
-- `render_and_export` : render the scene and save the image + save coordinates of the balls in the csv file
+- `render_and_export` : render the scene and save the image + save coordinates of the balls in the csv file. The choice of the render engine is input as argument.
 - `choose_device` : choose the device to render the scene (CPU or GPU)
 - `step` : main function that call all the other functions
 
 Specific methods for this dataset are the following :
 - `generate_ball` : generate random number of balls and place them randomly
+
+
+### Adding HDR lights
 
 
 ### Usage
@@ -135,6 +153,9 @@ if __name__ == "__main__":
 
 
 # Output
+
+The `master path` that you entered is the path where the dataset will be saved. 
+
 
 The output is a dataset composed of 2 parts :
 - Images
