@@ -1,9 +1,9 @@
 # State of the Art
 
 Blender software is used to generate dataset for data segmentation
-models. This software already has been employed to create food data to train segmentation model. The shape, volume, texture, color, and
+models. This software already has been employed to create food data[¹] to train segmentation model. The shape, volume, texture, color, and
 composition of food vary. Blender allows to generate a huge amount of
-data with variations (on food, lights and camera). In this case, the dataset trains a Mask R-CNN for instance segmentation.
+data with variations (on food, lights and camera). In this case, the dataset trains a Mask R-CNN[²] for instance segmentation.
 
 # Tutorial
 
@@ -18,19 +18,21 @@ The dataset is composed of 2 parts :
 
 Blender is a free and open-source 3D computer graphics software toolset used for creating animated films, visual effects, art and for many other application.
 
-The use of Blender is pushed by the fact that the software can render images using ray tracing. Ray tracing is a rendering technique that simulates the physical behavior of light to render an image. It is a technique that can be used to create photorealistic images. The shadows are close to the reality and the reflections are also very realistic. The use of ray tracing is a good way to create a dataset for a segmentation model.
+The use of Blender is pushed by the fact that the software can render images using ray tracing. Ray tracing is a rendering technique that simulates the physical behavior of light to render an image. It is a technique that can be used to create photorealistic images. The shadows and reflections are close to the reality.
 
 ### Model
 
-For the model, either you can create it or find model on the internet. In this tutorial, we will use a model of a pool table. The model is available on github[¹]. For the balls, we will use a simple sphere colored (yellow or red) with a glossy render close to real.
+For the model, either you can create it or find a model on the internet. In this tutorial, we will use a model of a pool table. The model is available on github[³]. For the balls, we will use a simple sphere colored (yellow or red) with a glossy render close to real.
 
-On Blender, you can see the objects that exist in your blender project in the `collection` section.
+The scale of the model is important. The scale of the model must be the same as the real life scale. In this tutorial, the scale is 1 unit = 1 meter.
+
+On Blender, you can see the objects that exist in your blender project/scene in the `collection` section.
 
 Example of collection section on the project :
 
 ![example of collection section on the project](media/collection.png)
 
-The `"pool_table"`, `"red_ball"` and `"yellow_ball"` are the original model of the element. Only one instance of the each object is required to go further. 
+The `"pool_table"`, `"red_ball"` and `"yellow_ball"` are the seed objects of the project. These objects will be duplicated to created many instances of the balls later. Only one instance of the each object is required to go further. 
 
 ### Layout
 
@@ -68,7 +70,7 @@ The Workbench render engine is a simple render engine. It is used to render quic
 
 ## Python
 
-First of all, I higly recommend to read the documentation of Blender. You can find it [here](https://docs.blender.org/api/current/). 
+First of all, I highly recommend to read the documentation of Blender. You can find it [here](https://docs.blender.org/api/current/). 
 
 Also you need to know the basics of python. You can find the documentation [here](https://docs.python.org/3/).
 
@@ -105,7 +107,7 @@ import csv # to save the csv file
 
 ### Variables
 
-The first step is to define the variables. The variables are the parameters of the dataset. The variables are the following :
+The second step is to define the variables. The variables are the parameters of the dataset and are used many times in the actual code. The variables are the following :
 
 - `master_path` : path to save the dataset
 - `root_object` : objects that mustn't be suppressed
@@ -123,8 +125,8 @@ General methods for a dataset generation are the following :
 - `delete_objects` : delete all the objects except the root object
 - `collide` : check if the ball collide with another ball
 - `generate_random_pos` : generate a random position and return it
-- `moove_object` : move all the objects to the position randomly generated
-- `moove_light` : move the light to the position randomly generated
+- `move_object` : move all the objects to the position randomly generated
+- `move_light` : move the light to the position randomly generated
 - `generate_light` : generate a random number of light and place them randomly
 - `render_and_export` : render the scene and save the image + save coordinates of the balls in the csv file. The choice of the render engine is input as argument.
 - `choose_device` : choose the device to render the scene (CPU or GPU)
@@ -134,7 +136,7 @@ Specific methods for this dataset are the following :
 - `generate_ball` : generate random number of balls and place them randomly
 
 
-### Adding HDR lights
+
 
 
 ### Usage
@@ -146,7 +148,7 @@ if __name__ == "__main__":
     # create the csv file
     create_csv()
     # for loop corresponding to the number of images that you want to generate
-    for i in range(number_of_image):
+    for i in range(number_of_images):
         step(i)
 ```
 
@@ -168,4 +170,10 @@ An example can be found [here](https://github.com/matthieu-sgi/Synthetic_Data_Bl
 
 # References
 
-[1] : Github repository [@yliess86/Snook](https://github.com/yliess86/Snook)
+[1] : D. Park et al. Deep Learning based Food Instance Segmentation using Synthetic Data. en. arXiv:2107.07191
+[cs]. July 2021. url: [http://arxiv.org/abs/2107.07191](http://arxiv.org/abs/2107.07191) (visited on 10/17/2022) (cited on page 1).
+
+[2] : Kaiming He et al. ‘Mask r-cnn’. In: Proceedings of the IEEE international conference on computer vision.
+2017, pp. 2961–2969 (cited on page 1).
+
+[3] : Github repository [@yliess86/Snook](https://github.com/yliess86/Snook).

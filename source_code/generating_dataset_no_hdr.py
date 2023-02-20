@@ -152,7 +152,7 @@ def choose_device(soft : str = "CUDA", device : str = "GPU") -> None:
         d["use"] = 1 # Using all devices, include GPU and CPU
         print(d["name"], d["use"])
 
-def moove_light() -> None:
+def move_light() -> None:
     lights_names = [light.name for light in bpy.data.objects if light.name.startswith("Light")]
     for l in lights_names:
         max = 3
@@ -163,7 +163,7 @@ def moove_light() -> None:
 def generate_lights(nb_light : int = 2):
     for _ in range(nb_light-1):
         copy_obj("Light")
-    moove_light()
+    move_light()
         
 def step(id : int)->None:
     delete_objects()
@@ -171,19 +171,12 @@ def step(id : int)->None:
     generate_lights(ri(1,3))
     render_and_export(id)
 
-#def generate_masks() -> None:
         
 
 if __name__ == "__main__" : 
     create_csv()
-    #moove_light()
+    #move_light()
     #render_and_export(1)
     for i in range(20) :
         step(i)
-    #step(1)
-    #delete_objects()
-    #render(engine = "BLENDER_EEVEE")
-    #moove_objects()
-    #create_csv()
-    #hide_show("red_ball",False)
-    
+

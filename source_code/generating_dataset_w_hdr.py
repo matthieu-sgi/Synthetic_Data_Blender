@@ -69,7 +69,7 @@ def generate_random_pos() -> tuple :
             ru(y_min + ball_offset ,y_max - ball_offset),
             z_pos)
             
-def moove_objects() -> None :
+def move_objects() -> None :
     for obj in bpy.data.objects :
         if obj.name in ['Camera','Light', "Plane",'pool_table','Light.001','Light.002']:
             continue
@@ -106,7 +106,7 @@ def generate_balls(nb_red : int = 7, nb_yellow : int = 7) -> None:
     else :
         hide_show("yellow_ball",False)
     
-    moove_objects()
+    move_objects()
     
 def render_and_export(
     id : int ,
@@ -152,7 +152,7 @@ def choose_device(soft : str = "CUDA", device : str = "GPU") -> None:
         d["use"] = 1 # Using all devices, include GPU and CPU
         print(d["name"], d["use"])
 
-def moove_light() -> None:
+def move_light() -> None:
     lights_names = [light.name for light in bpy.data.objects if light.name.startswith("Light")]
     for l in lights_names:
         max = 3
@@ -163,7 +163,7 @@ def moove_light() -> None:
 def generate_lights(nb_light : int = 2):
     for _ in range(nb_light-1):
         copy_obj("Light")
-    moove_light()
+    move_light()
         
 def step(id : int)->None:
     delete_objects()
@@ -176,7 +176,7 @@ def rotate_background(angle : float = ru(0,6.18)) ->None :
     obj = bpy.data.worlds["World"].node_tree
     obj.nodes["Mapping"].inputs[2].default_value[2] = angle
 
-def moove_camera(liberty: float = 0.3, x : float = 0, y : float = 0, z : float = 3) ->None :
+def move_camera(liberty: float = 0.3, x : float = 0, y : float = 0, z : float = 3) ->None :
     for obj in bpy.data.objects :
         if obj.name == "Camera" :
             new_pos = (ru(x - liberty,x + liberty),
@@ -190,21 +190,20 @@ def background_strength(strength :float = ru(0.5,1.5)) -> None :
 
 
 
-#def generate_masks() -> None:
         
 
 if __name__ == "__main__" : 
-    #moove_camera()
+    #move_camera()
     create_csv(
     path = master_path,
     filename = 'coords_hdr_camera.csv'
     )
-    #moove_light()
+    #move_light()
     
     for i in range(10) :
          step(i)
          rotate_background(angle = ru(0,6.18))
-         #moove_camera()
+         #move_camera()
          background_strength(strength = ru(0.5,1.5))
          render_and_export(i,path = master_path+ "images_hdr_camera")
     
