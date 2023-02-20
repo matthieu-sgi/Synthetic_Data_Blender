@@ -81,6 +81,8 @@ Then if you are running on a linux distribution, you should run Blender using th
 blender <name-of-your-file>.blend
 ```
 
+All the code is available on github[⁴].
+
 ### Imports
 
 The first step is to import the python library of Blender. The library is called `bpy`. You can import it with the following code :
@@ -154,6 +156,8 @@ if __name__ == "__main__":
 
 
 
+
+
 # Output
 
 The `master path` that you entered is the path where the dataset will be saved. 
@@ -177,3 +181,5 @@ An example can be found [here](https://github.com/matthieu-sgi/Synthetic_Data_Bl
 2017, pp. 2961–2969 (cited on page 1).
 
 [3] : Github repository [@yliess86/Snook](https://github.com/yliess86/Snook).
+
+[4] : Github repository [@matthieu-sgi/Synthetic_Data_Blender](https://github.com/matthieu-sgi/Synthetic_Data_Blender/tree/main/source_code)
