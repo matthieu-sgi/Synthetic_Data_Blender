@@ -154,6 +154,7 @@ if __name__ == "__main__":
         step(i)
 ```
 
+And then you can run the code in the python console of Blender using the `play` button.
 
 
 

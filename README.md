@@ -114,6 +114,8 @@ import mathutils
 import csv # to save the csv file
 ```
  
+And then you can run the code in the python console of Blender using the `play` button.
+
 
 
 ### Variables

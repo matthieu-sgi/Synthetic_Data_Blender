@@ -120,8 +120,8 @@ def render_and_export(
         #choose_device(soft = "CUDA",device = 'GPU')
         
     name = str(id) + '.png'
-    bpy.data.scenes['Scene'].render.resolution_x = 100
-    bpy.data.scenes['Scene'].render.resolution_y = 56
+    bpy.data.scenes['Scene'].render.resolution_x = 100 # Width of the image, can be changed
+    bpy.data.scenes['Scene'].render.resolution_y = 56 # Height of the image, can be changed
     bpy.context.scene.render.filepath = os.path.join(path, name ) #(output_file_pattern_string % step)
     bpy.ops.render.render(write_still = True)
     for obj in bpy.data.objects :
